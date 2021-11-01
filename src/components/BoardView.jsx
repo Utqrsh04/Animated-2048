@@ -52,7 +52,10 @@ const BoardView = () => {
         <div className="resetButton" onClick={resetGame}>
           New Game
         </div>
-        
+        <div className="score-box">
+          <div className="score-title">SCORE</div>
+          <div className="">{board.score}</div>
+        </div>
       </div>
       <div className="board">
         {cells}
