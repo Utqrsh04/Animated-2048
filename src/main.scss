@@ -5,7 +5,7 @@
 
 body {
   display: flex;
-  background-color: #57407c;
+  background-color: #664d8f;
   flex-direction: column;
   justify-content: center;
   align-content: center;
@@ -66,9 +66,9 @@ body {
 .score-box {
   background-color: #3d2963;
   color: rgba(255, 255, 255, 0.5);
-  min-width: 50px;
-  width: 70px;
+  min-width: max-content;
   padding: 5px 15px;
+  margin-right: 4px;
   border-radius: 7px;
 }
 
@@ -149,14 +149,16 @@ body {
 .tile2048 {
   position: absolute;
   background-size: contain;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   padding: 0px;
   color: #fff;
   background-image: url(./assets/img/2048.gif);
   font-size: 35px;
+  background-repeat: no-repeat;
+  top: 120px;
+  width: 440px;
+  height: 440px;
+  z-index: 100;
+  text-align: center;
 }
 
 .try-again {
@@ -228,11 +230,11 @@ body {
 .gameOver {
   background-size: contain;
   background-image: url(./assets/img/game-over.gif);
+  background-repeat: no-repeat;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 120px;
+  width: 440px;
+  height: 440px;
   z-index: 100;
   text-align: center;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Board } from "../helper";
 import useEvent from "../helper/hooks/useEvent";
 import Cell from "./Cell";
+import GameOver from "./GameOver";
 import Tile from "./Tile";
 
 const BoardView = () => {
@@ -44,7 +45,7 @@ const BoardView = () => {
 
   const resetGame = () => {
     setBoard(new Board());
-  } 
+  };
 
   return (
     <div>
@@ -52,14 +53,24 @@ const BoardView = () => {
         <div className="resetButton" onClick={resetGame}>
           New Game
         </div>
-        <div className="score-box">
-          <div className="score-title">SCORE</div>
-          <div className="">{board.score}</div>
+
+        <div className="details-box">
+          <div className="score-box">
+            <div className="score-title">Score</div>
+            <div className="">{board.score}</div>
+          </div>
+          <div className="score-box">
+            <div className="score-title">Max Score</div>
+            <div className="">{board.score}</div>
+          </div>
         </div>
       </div>
       <div className="board">
         {cells}
         {tiles}
+      </div>
+      <div>
+        <GameOver onRestart={resetGame} board={board} />
       </div>
     </div>
   );
