@@ -16,7 +16,7 @@ const GameOver = ({ onRestart, board }) => {
             cursor: "pointer",
           }}
         />
-        💩💩💩💩
+        💩💩💩
       </div>
     );
   }
