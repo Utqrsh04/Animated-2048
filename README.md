@@ -29,3 +29,5 @@ To run, simply clone the repo , install dependencies and start a web server serv
 and the game will be accessible on ```localhost:3000```.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
+
+## Special Credits to [Romain Cousin](https://www.behance.net/gallery/16173271/2048-Animated-Edition) for his awesome design. 
