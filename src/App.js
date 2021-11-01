@@ -1,8 +1,11 @@
+import BoardView from "./components/BoardView";
+import "./main.scss";
+import "./styles.scss";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">2048</header>
+      <BoardView/>
     </div>
   );
 }

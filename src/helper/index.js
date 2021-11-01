@@ -60,8 +60,10 @@ class Board {
     this.score = 0;
     this.size = 4;
     this.fourProbability = 0.1;
+
     this.deltaX = [-1, 0, 1, 0];
     this.deltaY = [0, -1, 0, 1];
+    
     for (var i = 0; i < this.size; ++i) {
       this.cells[i] = [
         this.addTile(),
@@ -107,6 +109,7 @@ class Board {
     }
     return hasChanged;
   }
+  
   setPositions() {
     this.cells.forEach((row, rowIndex) => {
       row.forEach((tile, columnIndex) => {
