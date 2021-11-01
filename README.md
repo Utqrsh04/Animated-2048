@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+2048-Animated-react
+==========
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Play it here](https://2048-utqrsh.netlify.app/)
 
-## Available Scripts
+![](https://github.com/Utqrsh04/Animated-2048/blob/master/src/assets/img/2048.png)
 
-In the project directory, you can run:
+### React
 
-### `npm start`
+The view logic is in [index.js](https://github.com/Utqrsh04/Animated-2048/blob/master/src/helper/index.js). 
+There is one main component called [BoardView](https://github.com/Utqrsh04/Animated-2048/blob/master/src/components/BoardView.jsx) which keeps a Board object as its state. It handles all the events by forwarding them to the Board appropriately, and then propagates the changes to its child components. As promised by React, there is almost no direct DOM manipulation - except for attaching the keyDown listener to ```window``` so the events can be handled on the whole page instead of only when the board is focused.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The [TileView](https://github.com/Utqrsh04/Animated-2048/blob/master/src/components/Tile.jsx) is where most of the fun view stuff happens. It receives a [Tile](https://github.com/Utqrsh04/Animated-2048/blob/64a4d34b61229661b4c75b090888fd4331927e81/src/components/Tile.jsx#L19) in its props object and determines whether it is new or moving, and if it's moving - what are the source and the destination. Then it sets the appropriate CSS classes in order to trigger the correct animations.
 
-The page will reload if you make edits.\
+### CSS Animations
+
+The animations are implemented in CSS3. Since there is a separate class for each movement from cell A to cell B, those classes cannot be written directly in CSS (or, at least, it would be really suboptimal) and have to be generated. This happens with SASS in [style.scss](https://github.com/IvanVergiliev/2048-react/blob/30455294382b403ad8944c473d5f1f06d5813096/src/style.scss).
+
+One optimization used to minimize the generated CSS size was to separate the tile movement into row and column movement. That is, instead of generating a separate animation for each quadruple `(startRow, startColumn)` -> `(endRow, endColumn)` (as can be seen [here](https://github.com/Utqrsh04/Animated-2048/blob/master/src/styles.scss)), the observation is made that every movement is either completely horizontal or completely vertical. This means that there can be 2*4^2 animations of the form `(startRow)` -> `(endRow)` and `(startColumn)` -> `(endColumn)` instead of 4^4 animations of the other form. This decreased the generated CSS size from about 70KB  to about 10KB.
+
+### Building and running
+
+To run, simply clone the repo , install dependencies and start a web server serving the main project directory.
+
+    git clone https://github.com/Utqrsh04/Animated-2048.git
+    cd Animated-2048
+    npm install 
+    npm start
+    Start Playing😎
+
+and the game will be accessible on ```localhost:3000```.
+The page will reload if you make edits.
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
